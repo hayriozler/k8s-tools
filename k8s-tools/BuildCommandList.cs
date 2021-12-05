@@ -11,7 +11,7 @@ public static class BuildCommandList
     }
     private static void BuildCtxCommandList()
     {
-        var command = new Command("k8s-ctx", new HelpOperation());
+        var command = new CtxCommand("k8s-ctx", new CtxHelpOperation());
         command.AddParameters(new Param("h"));
         command.AddParameters(new Param("help"));
         commandList.Add(command.Name, command);
@@ -19,7 +19,7 @@ public static class BuildCommandList
 
     private static void BuildNsCommandList()
     {
-        var command = new Command("k8s-na");
+        var command = new NsCommand("k8s-na", new NsHelpOperation());
         command.AddParameters(new Param("h"));
         command.AddParameters(new Param("help"));
     }

@@ -16,4 +16,4 @@ if(!commandList.ContainsKey(mainCommand)){
 
 var command = commandList[mainCommand];
 var commandArg = args[1];
-command.Operation.Execute()
+command.Exec();
