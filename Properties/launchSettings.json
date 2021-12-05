@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "k8s-tools": {
+      "commandName": "Project",
+      "commandLineArgs": "k8s-ctx", "-l"
+    }
+  }
+}
