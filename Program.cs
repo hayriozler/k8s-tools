@@ -6,7 +6,7 @@ if(args.Length < 0)
     ConsoleWriter.WriteErrorToConsole("No args defined");
     return;
 }
-if (args.Length > 2)
+if (args.Length > 3)
 {
     ConsoleWriter.WriteErrorToConsole("Multiple arguments defined");
     return;
@@ -31,7 +31,9 @@ if(executor is null)
 }
 try
 {
-    executor.Exec(args[1]);
+    //TODO find better way to handling arguments value;
+    var arg = args.Length == 2 ? args[1] : args[2];
+    executor.Exec(arg);
 }
 catch(Exception ex)
 {
