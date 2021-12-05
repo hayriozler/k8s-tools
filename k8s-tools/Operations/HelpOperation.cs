@@ -2,7 +2,9 @@
 
 public class HelpOperation : IOperation
 {
-    public void Execute(Command _)
+    public Command command => throw new NotImplementedException();
+
+    public void Execute()
     {
         Console.WriteLine("Help ---");
     }

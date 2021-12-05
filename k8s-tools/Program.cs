@@ -1,19 +1,19 @@
-﻿using System.Linq;
-using k8s_tools;
+﻿using k8s_tools;
 
 var commandList = BuildCommandList.InitializeCommandList();
 if(args.Length == 0)
 {
-    ConsoleWriter.WriteConsole("No args defined will be execute default behavour");
+    ConsoleWriter.WriteErrorToConsole("No args defined");
+    return;
 }
+
 var mainCommand = args[0]; // main command such as k8s-ctx
+
 if(!commandList.ContainsKey(mainCommand)){
     ConsoleWriter.WriteErrorToConsole("Command not found");
     return;
 }
-else{
-    var command = commandList[mainCommand];
-    ConsoleWriter.WriteConsole($"Command found Name: {command.Name}");
-    var commandArg = args[1];
-    ConsoleWriter.WriteConsole(commandArg);
-}
+
+var command = commandList[mainCommand];
+var commandArg = args[1];
+command.Operation.Execute()

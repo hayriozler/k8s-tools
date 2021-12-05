@@ -11,7 +11,7 @@ public static class BuildCommandList
     }
     private static void BuildCtxCommandList()
     {
-        var command = new Command("k8s-ctx");
+        var command = new Command("k8s-ctx", new HelpOperation());
         command.AddParameters(new Param("h"));
         command.AddParameters(new Param("help"));
         commandList.Add(command.Name, command);
