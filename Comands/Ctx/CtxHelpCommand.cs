@@ -2,11 +2,9 @@
 
 namespace k8s_tools;
 
-public class CtxHelpCommand : ICommand
+public class CtxHelpCommand : BaseCommand
 {
-    public bool IsParameterValueRequired => false;
-
-    public void Execute(Executor cmd)
+    public override void Execute(Executor cmd)
     {
         StringBuilder text= new();
         text.AppendLine($"-----HELP-Command Name:{cmd.Name}-----");

@@ -1,14 +1,8 @@
 namespace k8s_tools;
 
-public class CtxEmptyCommand : ICommand
+public class CtxEmptyCommand : BaseCommand
 {
-    public CtxEmptyCommand()
-    {
-    }
-
-    public bool IsParameterValueRequired => false;
-
-    public void Execute(Executor _)
+    public override void Execute(Executor _)
     {
         ConsoleWriter.WriteWarningToConsole("Could not find any command");
     }

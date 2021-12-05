@@ -1,9 +1,7 @@
 ﻿namespace k8s_tools;
-public class CtxPrevSelectCommand : ICommand
+public class CtxPrevSelectCommand : BaseCommand
 {
-    public bool IsParameterValueRequired => false;
-
-    public void Execute(Executor cmd)
+    public override void Execute(Executor cmd)
     {
         var kubeConfig = KubeConfigHelper.GetKubeContext();
         var currentContext = kubeConfig.CurrentContext.Value;
@@ -20,19 +18,5 @@ public class CtxPrevSelectCommand : ICommand
             i--;
         }
         SwitchContext(kubeConfig, kubeConfig.Contexts[i]);
-    }
-    private static void SwitchContext(KubeConfig kubeConfig, Context ctx)
-    {
-        try
-        {
-            if (kubeConfig.CurrentContext.Value != ctx.Item.Value)
-            {
-                KubeConfigHelper.WriteKubeConfig($"current-context: {ctx.Item.Value}", kubeConfig.CurrentContext.BeginOffset, kubeConfig.CurrentContext.FullText.Length);
-            }
-        }
-        catch (Exception e)
-        {
-            ConsoleWriter.WriteErrorToConsole(e.Message);
-        }
     }
 }

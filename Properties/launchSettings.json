@@ -2,7 +2,7 @@
   "profiles": {
     "k8s-tools": {
       "commandName": "Project",
-      "commandLineArgs": "k8s-ctx -c docker-desktop3"
+      "commandLineArgs": "k8s-ctx -d docker-desktop2"
     }
   }
 }
