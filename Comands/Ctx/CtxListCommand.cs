@@ -6,10 +6,10 @@ public class CtxListCommand : ICommand
     {
         ConsoleWriter.WriteConsole($"Command: {cmd.Name} ", ConsoleColor.Green);
         ConsoleWriter.WriteConsole("----Result---", ConsoleColor.Green);
-        var kubeConfig = CtxHelper.GetKubeContext();
+        var kubeConfig = KubeConfigHelper.GetKubeContext();
         foreach(var k in kubeConfig.Contexts)
         {
-            ConsoleWriter.WriteConsole(k.Name);
+            ConsoleWriter.WriteConsole(k.Item.Value);
         }
         ConsoleWriter.WriteConsole("----End---", ConsoleColor.Green);
         Console.ReadKey();

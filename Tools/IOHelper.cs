@@ -6,10 +6,21 @@ public static class IOHelper
     {
         return (File.Exists(fileName));
     }
-    public static TextReader Read(string filePath)
+    public static ReadResult Read(string filePath)
     {
-        var fs = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite);
-        return new StreamReader(fs);
-
+        var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read);
+        var reader = new StreamReader(fs);
+        fs.Position = 0;
+        var readResult =  new ReadResult
+        {
+            Reader = reader,
+            Content = reader.ReadToEnd()
+        };
+        fs.Position = 0;
+        return readResult;
+    }
+    public static void Write(string filePath, string content)
+    {
+        File.WriteAllText(filePath, content);
     }
 }

@@ -2,12 +2,17 @@
 
 public class KubeConfig
 {
-    public string ApiVersion { get; set; }
     public List<Context> Contexts { get; set; } = new List<Context>();
-    public string CurrentContext { get; set; }
+    public YamlNodeInformation CurrentContext { get; set; }
 }
 
 public class Context
 {
-    public string Name { get; set; }
+    public YamlNodeInformation Item { get; set; }
+}
+public class YamlNodeInformation
+{
+    public string Value { get; set; }
+    public string FullText { get; set; }
+    public int BeginOffset { get; set; } 
 }
