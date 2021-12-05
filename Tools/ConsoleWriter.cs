@@ -4,6 +4,9 @@ public static class ConsoleWriter{
     {
         Console.ForegroundColor = color;
         Console.WriteLine(txt);
+    }
+    public static void ResetColor()
+    {
         Console.ResetColor();
     }
     public static void WriteErrorToConsole(string txt){
