@@ -2,16 +2,14 @@
     
 public class NsExecutor : Executor
 {
-    public NsExecutor(string name, string parameterName, ICommand operation)
-        :base(name, parameterName)
+    public NsExecutor(string name, ICommand operation)
+        :base(name)
     {
-        Name = name;
         Operation = operation;
     }
     public ICommand Operation {get; private set;}
-    public override void Exec(string value)
+    public override void Exec(Parameter[] parameters)
     {
-        ParameterValue = value;
-        Operation.Execute(this);
+        Operation.Execute(this, parameters);
     }
 }

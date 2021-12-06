@@ -1,13 +1,10 @@
 namespace k8s_tools;
 public abstract class Executor
 {
-    public Executor(string name, string parameterName)
+    public Executor(string name)
     {
         Name = name;
-        ParameterName = parameterName;
     }
-    public string Name { get; internal set; }
-    public string ParameterName { get; internal set; }
-    public string ParameterValue { get; internal set; } = string.Empty;
-    public abstract void Exec(string value);
+    public string Name { get; private set; }
+    public abstract void Exec(Parameter[] args);
 }

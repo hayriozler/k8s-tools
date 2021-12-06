@@ -13,29 +13,34 @@ public static class BuildExecutorList
     }
     private static void BuildCtxExecutoreList()
     {
-        executorList.Add(k8s_ctx, new List<Executor> {
-        new CtxExecutor(k8s_ctx, "-h", new CtxHelpCommand()),
-        new CtxExecutor(k8s_ctx, "--help", new CtxHelpCommand()),
-        new CtxExecutor(k8s_ctx, "-l", new CtxListCommand()),
-        new CtxExecutor(k8s_ctx, "-list", new CtxListCommand()),
-        new CtxExecutor(k8s_ctx, "-c", new CtxChangeContextCommand()),
-        new CtxExecutor(k8s_ctx, "--change", new CtxChangeContextCommand()),
-        new CtxExecutor(k8s_ctx, "-", new CtxPrevSelectCommand()),
-        new CtxExecutor(k8s_ctx, "-p", new CtxPrevSelectCommand()),
-        new CtxExecutor(k8s_ctx, "--prev", new CtxPrevSelectCommand()),
-        new CtxExecutor(k8s_ctx, "+", new CtxNextSelectCommand()),
-        new CtxExecutor(k8s_ctx, "-n", new CtxNextSelectCommand()),
-        new CtxExecutor(k8s_ctx, "--next", new CtxNextSelectCommand()),
-        new CtxExecutor(k8s_ctx, "-u", new CtxUnsetCommand()),
-        new CtxExecutor(k8s_ctx, "--unset", new CtxUnsetCommand()),
-        new CtxExecutor(k8s_ctx, "-d", new CtxDeleteCommand()),
-        new CtxExecutor(k8s_ctx, "--delete", new CtxDeleteCommand()) });
+        executorList.Add(k8s_ctx, 
+        new List<Executor> 
+        {
+            new CtxExecutor("-h", new CtxHelpCommand()),
+            new CtxExecutor("--help", new CtxHelpCommand()),
+            new CtxExecutor("-l", new CtxListCommand()),
+            new CtxExecutor("-list", new CtxListCommand()),
+            new CtxExecutor("-c", new CtxChangeContextCommand()),
+            new CtxExecutor("--change", new CtxChangeContextCommand()),
+            new CtxExecutor("-", new CtxPrevSelectCommand()),
+            new CtxExecutor("-p", new CtxPrevSelectCommand()),
+            new CtxExecutor("--prev", new CtxPrevSelectCommand()),
+            new CtxExecutor("+", new CtxNextSelectCommand()),
+            new CtxExecutor("-n", new CtxNextSelectCommand()),
+            new CtxExecutor("--next", new CtxNextSelectCommand()),
+            new CtxExecutor("-u", new CtxUnsetCommand()),
+            new CtxExecutor("--unset", new CtxUnsetCommand()),
+            new CtxExecutor("-r", new CtxRenameCommand()),
+            new CtxExecutor("--rename", new CtxRenameCommand()),
+            new CtxExecutor("-d", new CtxDeleteCommand()),
+            new CtxExecutor("--delete", new CtxDeleteCommand()) 
+        });
      }
 
     private static void BuildNsExecutorList()
     {
         executorList.Add(k8s_ns, new List<Executor> { 
-        new NsExecutor(k8s_ns, "-h", new NsHelpCommand()),
-        new NsExecutor(k8s_ns, "--help", new NsHelpCommand())});
+        new NsExecutor("-h", new NsHelpCommand()),
+        new NsExecutor("--help", new NsHelpCommand())});
     }
 }

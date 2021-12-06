@@ -2,18 +2,15 @@
 
 public class CtxExecutor : Executor
 {
-    public CtxExecutor(string name, string parameterName, ICommand operation)
-        :base(name, parameterName)
+    public CtxExecutor(string name, ICommand operation)
+        :base(name)
     {
-        Name = name;
-        ParameterName = parameterName;
         Operation = operation;
     }
     public ICommand Operation { get; private set; }
 
-    public override void Exec(string value)
+    public override void Exec(Parameter[] arguments)
     {
-        ParameterValue = value;
-        Operation.Execute(this);
+        Operation.Execute(this, arguments);
     }
 }

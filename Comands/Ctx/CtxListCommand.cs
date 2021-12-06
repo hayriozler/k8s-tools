@@ -1,8 +1,13 @@
 ﻿namespace k8s_tools;
 public class CtxListCommand : BaseCommand
 {
-    public override void Execute(Executor cmd)
+    public override void Execute(Executor cmd, Parameter[] parameters)
     {
+        if (!Validate(parameters))
+        {
+            ConsoleWriter.WriteWarningToConsole("Too many arguments");
+            return;
+        }
         var name = cmd.Name;
         var kubeConfig = KubeConfigHelper.GetKubeContext();
         int selected = 0;
@@ -47,5 +52,10 @@ public class CtxListCommand : BaseCommand
         ConsoleWriter.ResetColor();
     }
 
+    public override bool Validate(Parameter[] parameters)
+    {
+        if (parameters.Any()) return false;
+        return true;
+    }
 }
 

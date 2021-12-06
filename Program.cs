@@ -6,34 +6,36 @@ if(args.Length < 0)
     ConsoleWriter.WriteErrorToConsole("No args defined");
     return;
 }
-if (args.Length > 3)
-{
-    ConsoleWriter.WriteErrorToConsole("Multiple arguments defined");
-    return;
-}
 
-var mainExecutorText = args[0]; // main command such as k8s-ctx
-if(!commandList.ContainsKey(mainExecutorText)){
-    ConsoleWriter.WriteErrorToConsole($"{mainExecutorText} main command not found.");
+var arg = args[0]; // main command such as k8s-ctx
+if(!commandList.ContainsKey(arg)){
+    ConsoleWriter.WriteErrorToConsole($"{arg} main command not found.");
     return;
 }
-if(args.Length == 1) //Default help method execute;
+List<string> arguments = new(); 
+var executionList = commandList[arg];
+if(!executionList.Any())
 {
-    ConsoleWriter.WriteErrorToConsole("Parameter could not find, to see avaiable list of commands please use -h");
+    ConsoleWriter.WriteErrorToConsole($"{arg} main command not found.");
     return;
 }
-var mainExecutor = commandList[mainExecutorText];
-var executor = mainExecutor.FirstOrDefault(p => p.ParameterName == args[1]);
-if(executor is null)
+Executor executor = null;
+List<Parameter> parameters = new();
+if (args.Length > 1) // k8s_tools --change value
 {
-    ConsoleWriter.WriteErrorToConsole("Parameter could not find, to see avaiable list of commands please use -h");
-    return;
+    executor = executionList.FirstOrDefault(p => p.Name == args[1]);
+    for (var i = 2; i < args.Length; i++)
+    {
+        parameters.Add(new Parameter { Value = args[i] });
+    }
+}
+else
+{
+    executor = executionList.First(p => p.Name == "-l");//default behavour if no parameters deefined;
 }
 try
 {
-    //TODO find better way to handling arguments value;
-    var arg = args.Length == 2 ? args[1] : args[2];
-    executor.Exec(arg);
+    executor?.Exec(parameters.ToArray());
 }
 catch(Exception ex)
 {
